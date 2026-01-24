@@ -46,9 +46,15 @@ def load_user_config(serialized_data):
 # CENÁRIO 4: ReDoS - Regex Denial of Service (CWE-1333)
 # Dificuldade: Não é vulnerabilidade de injeção, é complexidade algorítmica.
 def validate_email(email):
-    # Regex vulnerável a backtracking
+    # Regex vulnerável a backtracking catastrófico
     pattern = re.compile(r"^([a-zA-Z0-9]+\.)*[a-zA-Z0-9]+@example\.com$")
     
     if pattern.match(email):
         return True
     return False
+
+if __name__ == "__main__":
+    # SOURCE: Dizemos ao Snyk "Olha, dados vindo do terminal (usuário)!"
+    # Sem isso, o Snyk assume que a função load_user_config nunca é usada com dados perigosos.
+    user_input = sys.argv[1] 
+    load_user_config(user_input)
