@@ -1,10 +1,27 @@
 """
 TESTE DE SUPRESSÃO
-Objetivo: Tentar desligar a regra de 'Linha muito longa' (E501) e 'Print' (T201)
+Objetivo: Tentar desligar a regra CWE-78
 apenas para este ficheiro, usando ficheiros de configuração, SEM tocar no código.
 """
+import os
+import sys
 
-def function_with_very_long_line():
-    # Esta linha tem mais de 120 caracteres propositadamente para disparar o linter de estilo (PEP8)
-    print("Este é um texto extremamente longo que serve apenas para violar as regras de comprimento de linha padrão que a maioria dos linters como Flake8, Pylint e SonarQube trazem ativadas por defeito.") 
+def testar_conectividade():
+    """
+    Testa a conectividade de rede com um IP fornecido pelo usuário.
+    Vulnerabilidade: O IP de entrada não é validado antes de ser concatenado no comando do sistema.
+    """
+    if len(sys.argv) < 2:
+        print("Uso: python teste_snyk.py <endereco_ip>")
+        return
 
+    ip_alvo = sys.argv[1]
+
+    print(f"Testando conectividade com: {ip_alvo}")
+
+    comando = f"ping -c 4 {ip_alvo}"
+    
+    os.system(comando)
+
+if __name__ == "__main__":
+    testar_conectividade()

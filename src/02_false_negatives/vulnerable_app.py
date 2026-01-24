@@ -7,6 +7,7 @@ import os
 import pickle
 import base64
 import re
+import sys
 from flask import request
 
 # CENÁRIO 1: Command Injection via Ofuscação (CWE-78 / CWE-77)
@@ -54,7 +55,7 @@ def validate_email(email):
     return False
 
 if __name__ == "__main__":
-    # SOURCE: Dizemos ao Snyk "Olha, dados vindo do terminal (usuário)!"
-    # Sem isso, o Snyk assume que a função load_user_config nunca é usada com dados perigosos.
     user_input = sys.argv[1] 
     load_user_config(user_input)
+    read_private_file(user_input)
+    execution_helper(user_input)
