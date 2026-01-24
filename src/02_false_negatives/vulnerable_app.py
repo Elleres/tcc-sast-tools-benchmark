@@ -4,6 +4,7 @@ Objetivo: Vulnerabilidades reais escondidas por ofuscação, má sanitização
 ou lógica complexa que desafiam o motor de Taint Analysis.
 """
 import os
+import sys
 import pickle
 import base64
 import re
