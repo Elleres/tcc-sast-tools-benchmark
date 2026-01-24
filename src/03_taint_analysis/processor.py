@@ -2,8 +2,7 @@ import re
 
 def format_search_term(term):
     """
-    PROCESSOR (Sanitizer):
-    Agora esta função aplica uma limpeza ativa (Sanitization).
+    PROCESSOR: Apenas executa a funcao upper na string, mantendo a string suja.
     """
     if not term:
         return "default"
