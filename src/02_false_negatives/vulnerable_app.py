@@ -5,6 +5,7 @@ ou lógica complexa que desafiam o motor de Taint Analysis.
 """
 import os
 import pickle
+import sys
 import base64
 import re
 from flask import request
@@ -52,3 +53,7 @@ def validate_email(email):
     if pattern.match(email):
         return True
     return False
+
+if __name__ == "__main__":
+    user_input = sys.argv[1] 
+    load_user_config(user_input)
