@@ -5,6 +5,7 @@ ou lógica complexa que desafiam o motor de Taint Analysis.
 """
 import os
 import pickle
+import sys
 import base64
 import re
 import sys
