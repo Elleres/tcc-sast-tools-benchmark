@@ -7,6 +7,7 @@ import os
 import pickle
 import base64
 import re
+import sys
 from flask import request
 
 # CENÁRIO 1: Command Injection via Ofuscação (CWE-78 / CWE-77)
@@ -46,9 +47,15 @@ def load_user_config(serialized_data):
 # CENÁRIO 4: ReDoS - Regex Denial of Service (CWE-1333)
 # Dificuldade: Não é vulnerabilidade de injeção, é complexidade algorítmica.
 def validate_email(email):
-    # Regex vulnerável a backtracking
+    # Regex vulnerável a backtracking catastrófico
     pattern = re.compile(r"^([a-zA-Z0-9]+\.)*[a-zA-Z0-9]+@example\.com$")
     
     if pattern.match(email):
         return True
     return False
+
+if __name__ == "__main__":
+    user_input = sys.argv[1] 
+    load_user_config(user_input)
+    read_private_file(user_input)
+    execution_helper(user_input)

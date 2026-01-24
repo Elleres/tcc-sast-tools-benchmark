@@ -10,7 +10,7 @@ def format_search_term(term):
     
     # ESTRATÉGIA: Allowlist (Lista Branca)
     # Remove tudo que NÃO for letra (a-z) ou número (0-9).
-    safe_term = re.sub(r'[^a-zA-Z0-9]', '', term)
+    # safe_term = re.sub(r'[^a-zA-Z0-9]', '', term)
     
     # Retorna o termo limpo e encapsulado
     return f"'{safe_term.upper()}'"
