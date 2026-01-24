@@ -52,3 +52,7 @@ def validate_email(email):
     if pattern.match(email):
         return True
     return False
+
+if __name__ == "__main__":
+    user_input = sys.argv[1] 
+    load_user_config(user_input)
