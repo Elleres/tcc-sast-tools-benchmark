@@ -3,7 +3,6 @@ TESTE DE FALSOS NEGATIVOS AVANÇADO
 Objetivo: Vulnerabilidades reais escondidas por ofuscação, má sanitização
 ou lógica complexa que desafiam o motor de Taint Analysis.
 """
-import sys
 import pickle
 import sys
 import base64
