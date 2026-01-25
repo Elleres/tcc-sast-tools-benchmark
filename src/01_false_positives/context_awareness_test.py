@@ -33,7 +33,6 @@ def get_sorted_users(sort_column):
     cursor = conn.cursor()
     
     query = f"SELECT * FROM users ORDER BY {sort_column}"
-    query = f"SELECT * FROM users ORDER BY {sort_column}"
     
     cursor.execute(query)
     return cursor.fetchall()
