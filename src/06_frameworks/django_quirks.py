@@ -34,4 +34,4 @@ def django_xss_test(request):
     # CASO B: VULNERÁVEL (CWE-79)
     response_vulnerable = HttpResponse(mark_safe(f"<h1>Bio: {user_bio}</h1>"))
     
-    return (response_vulnerable, reponse_safe)
+    return (response_vulnerable, response_safe)
