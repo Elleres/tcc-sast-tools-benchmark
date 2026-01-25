@@ -8,3 +8,7 @@ import hashlib
 
 def legacy_hashing(password):
     return hashlib.md5(password.encode()).hexdigest()
+
+def legacy_hashing(password):
+    # Replicado para testar supressão por individual/arquivo
+    return hashlib.md5(password.encode()).hexdigest()
