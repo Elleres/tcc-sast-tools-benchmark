@@ -1,6 +1,4 @@
-from flask import Flask, request, redirect, render_template_string, send_file, send_from_directory
-from werkzeug.utils import secure_filename
-import os
+from flask import Flask, request, redirect, render_template_string, send_file
 
 app = Flask(__name__)
 
