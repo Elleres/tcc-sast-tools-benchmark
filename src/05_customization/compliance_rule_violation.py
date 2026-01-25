@@ -19,8 +19,26 @@ def testar_conectividade():
     print(f"Testando conectividade com: {ip_alvo}")
 
     comando = f"ping -c 4 {ip_alvo}"
-    
+    # deepcode ignore    
     os.system(comando)
+
+def testar_conectividade_v2():
+    """
+    Réplica da função acima com o objetivo de ignorar issues especificos dentro de arquivos
+    """
+    if len(sys.argv) < 2:
+        print("Uso: python teste_snyk.py <endereco_ip>")
+        return
+
+    ip_alvo = sys.argv[1]
+
+    print(f"Testando conectividade com: {ip_alvo}")
+
+    comando = f"ping -c 4 {ip_alvo}"
+    # deepcode ignore    
+    os.system(comando)
+
 
 if __name__ == "__main__":
     testar_conectividade()
+    testar_conectividade_v2()

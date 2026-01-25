@@ -1,7 +1,0 @@
-version: v1.25.0
-ignore:
-  'python/commandinjection':
-    - 'src/05_customization/compliance_rule_violation.py':
-        reason: 'Desabilitado para testar a habilidade de configuração do arquivo.'
-        expires: '2026-07-25T00:00:00.000Z'
-        created: '2026-01-25T01:22:00.000Z'
