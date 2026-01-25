@@ -32,7 +32,7 @@ def django_xss_test(request):
     # FONTE (Source)
     user_bio = request.GET.get('bio', '')
 
-    # CASO A: SEGURO (Django Auto-escape) 
+    # CASO A: SEGURO Format_html garante a seguranca do dado 
     response_safe = HttpResponse(format_html(f"<h1>Bio: {}</h1>", user_bio))
 
     # CASO B: VULNERÁVEL (CWE-79)
