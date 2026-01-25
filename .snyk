@@ -1,0 +1,7 @@
+version: v1.25.0
+ignore:
+  'python/sqlinjection':
+    - '/src/05_customization/compliance_rule_violation.py':
+        reason: 'Desabilitado para testar a habilidade de configuração do arquivo.'
+        expires: '2026-07-25T00:00:00.000Z' # Expira daqui a 6 meses
+        created: '2026-01-25T01:22:00.000Z' # Data de hoje
