@@ -7,9 +7,7 @@ from django.utils.html import format_html
 class User(models.Model):
     name = models.CharField(max_length=100)
 
-# CENÁRIO 1: Django Raw SQL - O jeito CERTO vs O jeito ERRADO
-# Desafio: A ferramenta distingue a sintaxe segura de params da insegura?
-# O Snyk deve detectar CWE-89 no Caso A (f-string), mas ignorar o Caso B (parametrização).
+# CENÁRIO 1: Django Raw SQL
 @require_GET
 def django_raw_query_test(request):
     # FONTE (Source): O Snyk reconhece o 'request.GET' como dado não confiável
@@ -24,9 +22,7 @@ def django_raw_query_test(request):
     
     return HttpResponse("Teste de SQLi")
 
-# CENÁRIO 2: Django XSS e 'mark_safe'
-# Desafio: A ferramenta sabe que o Django escapa HTML por padrão, mas que 'mark_safe' desliga essa proteção?
-# O Snyk deve detectar CWE-79 apenas no response_vulnerable.
+# CENÁRIO 2: format_html e 'mark_safe'
 @require_GET
 def django_xss_test(request):
     # FONTE (Source)
