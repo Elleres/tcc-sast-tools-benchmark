@@ -10,7 +10,6 @@ class User(models.Model):
 # CENÁRIO 1: Django Raw SQL
 @require_GET
 def django_raw_query_test(request):
-    # FONTE (Source): O Snyk reconhece o 'request.GET' como dado não confiável
     user_input = request.GET.get('name')
 
     # CASO A: VULNERÁVEL (CWE-89)
@@ -25,7 +24,6 @@ def django_raw_query_test(request):
 # CENÁRIO 2: format_html e 'mark_safe'
 @require_GET
 def django_xss_test(request):
-    # FONTE (Source)
     user_bio = request.GET.get('bio', '')
 
     # CASO A: SEGURO Format_html garante a seguranca do dado 
