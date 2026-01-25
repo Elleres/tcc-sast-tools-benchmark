@@ -7,7 +7,7 @@ import os
 from taint_source import get_dangerous_input
 from taint_processor import format_data
 
-def execute_vulnerability(dirty_input):
+def execute_vulnerability():
     dirty_input = get_dangerous_input()
 
     payload = format_data(dirty_input)
