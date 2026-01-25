@@ -2,6 +2,7 @@ from django.db import models
 from django.utils.safestring import mark_safe
 from django.views.decorators.http import require_GET
 from django.http import HttpResponse
+from django.utils.html import format_html
 
 class User(models.Model):
     name = models.CharField(max_length=100)
@@ -32,7 +33,7 @@ def django_xss_test(request):
     user_bio = request.GET.get('bio', '')
 
     # CASO A: SEGURO (Django Auto-escape) 
-    response_safe = HttpResponse(f"<h1>Bio: {user_bio}</h1>")
+    response_safe = HttpResponse(format_html(f"<h1>Bio: {}</h1>", user_bio))
 
     # CASO B: VULNERÁVEL (CWE-79)
     response_vulnerable = HttpResponse(mark_safe(f"<h1>Bio: {user_bio}</h1>"))
