@@ -1,46 +1,37 @@
-from flask import Flask, request
-import sqlite3
+from flask import Flask, request, redirect, render_template_string, send_file, send_from_directory
+from werkzeug.utils import secure_filename
 import os
 
 app = Flask(__name__)
 
-# VULNERABILIDADE 1: OS Command Injection (CWE-78)
-@app.route('/ping')
-def ping_server():
-    # FONTE (Source): O Snyk rastreia especificamente o request.args do Flask
-    ip_address = request.args.get('ip')
-    
-    # DESTINO (Sink): A entrada vai direto para o shell
-    comando = f"ping -c 1 {ip_address}"
-    os.system(comando)
-    
-    return f"Testando conectividade com: {ip_address}"
+# CENÁRIO 4: Flask SSTI (Server-Side Template Injection - CWE-74)
+@app.route('/hello')
+def hello_ssti():
+    user_name = request.args.get('name', 'Visitante')
 
-# VULNERABILIDADE 2: SQL Injection (CWE-89)
-@app.route('/user')
-def get_user():
-    # FONTE (Source)
-    user_id = request.args.get('id')
-    
-    conn = sqlite3.connect(":memory:")
-    cursor = conn.cursor()
-    
-    # DESTINO (Sink): Concatenação de string direto na execução do SQL
-    query = f"SELECT * FROM users WHERE id = {user_id}"
-    cursor.execute(query)
-    
-    return "Busca realizada"
+    # VULNERÁVEL - RCE/SSTI.
+    template_inseguro = f"<h1>Olá, {user_name}!</h1>"
+    return render_template_string(template_inseguro)
 
-# CENÁRIO 3: Flask Route Types (Validação Implícita)
-@app.route('/user/<int:user_id>')
-def get_user_by_id(user_id):
-    conn = sqlite3.connect(":memory:")
-    cursor = conn.cursor()
-    
-    query = f"SELECT * FROM users WHERE id = {user_id}"
-    cursor.execute(query)
-    
-    return "User found"
+# CENÁRIO 5: Flask Open Redirect (CWE-601)
+@app.route('/login')
+def login():
+    # FONTE (Source): O parâmetro 'next' vindo da URL
+    next_url = request.args.get('next')
 
-if __name__ == '__main__':
-    app.run(debug=True)
+    login_sucesso = True 
+
+    if login_sucesso and next_url:
+        return redirect(next_url)
+    
+    return "Login Page"
+
+
+# CENÁRIO 6: Path Traversal (LFI) via Flask Send File (CWE-22)
+@app.route('/download')
+def download_file():
+    filename = request.args.get('file')
+
+    # VULNERÁVEL - '?file=../../../etc/passwd'
+    return send_file(f"uploads/{filename}")
+
