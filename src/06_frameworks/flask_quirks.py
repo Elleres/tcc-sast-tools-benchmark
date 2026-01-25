@@ -2,7 +2,7 @@ from flask import Flask, request, redirect, render_template_string, send_file
 
 app = Flask(__name__)
 
-# CENÁRIO 4: Flask SSTI (Server-Side Template Injection - CWE-74)
+# CENÁRIO 1: Flask SSTI (Server-Side Template Injection - CWE-74)
 @app.route('/hello')
 def hello_ssti():
     user_name = request.args.get('name', 'Visitante')
@@ -11,7 +11,7 @@ def hello_ssti():
     template_inseguro = f"<h1>Olá, {user_name}!</h1>"
     return render_template_string(template_inseguro)
 
-# CENÁRIO 5: Flask Open Redirect (CWE-601)
+# CENÁRIO 2: Flask Open Redirect (CWE-601)
 @app.route('/login')
 def login():
     # FONTE (Source): O parâmetro 'next' vindo da URL
@@ -25,7 +25,7 @@ def login():
     return "Login Page"
 
 
-# CENÁRIO 6: Path Traversal (LFI) via Flask Send File (CWE-22)
+# CENÁRIO 3: Path Traversal (LFI) via Flask Send File (CWE-22)
 @app.route('/download')
 def download_file():
     filename = request.args.get('file')
