@@ -1,7 +1,6 @@
 """
 TESTE DE SUPRESSÃO
-Objetivo: Tentar desligar a regra CWE-78
-apenas para este ficheiro, usando ficheiros de configuração, SEM tocar no código.
+Objetivo: Tentar desligar a regra CWE-78 apenas para este arquivo, utilizando a interface gráfica.
 """
 import os
 import sys

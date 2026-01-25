@@ -3,14 +3,11 @@ TESTE DE FALSOS NEGATIVOS AVANÇADO
 Objetivo: Vulnerabilidades reais escondidas por ofuscação, má sanitização
 ou lógica complexa que desafiam o motor de Taint Analysis.
 """
-import os
 import sys
 import pickle
 import sys
 import base64
 import re
-import sys
-from flask import request
 
 # CENÁRIO 1: Command Injection via Ofuscação (CWE-78 / CWE-77)
 # Dificuldade: A ferramenta precisa descodificar Base64 ou entender 'eval/exec'

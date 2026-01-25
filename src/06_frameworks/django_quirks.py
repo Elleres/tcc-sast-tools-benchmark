@@ -14,11 +14,11 @@ def django_raw_query_test(request):
     # FONTE (Source): O Snyk reconhece o 'request.GET' como dado não confiável
     user_input = request.GET.get('name')
 
-    # CASO A: VULNERÁVEL (CWE-89) - O Snyk vai detectar esta linha
+    # CASO A: VULNERÁVEL (CWE-89)
     unsafe_query = f"SELECT * FROM auth_user WHERE name = '{user_input}'"
     User.objects.raw(unsafe_query)
 
-    # CASO B: SEGURO - O Snyk NÃO deve alertar aqui (parametrização correta)
+    # CASO B: SEGURO
     User.objects.raw("SELECT * FROM auth_user WHERE name = %s", [user_input])
     
     return HttpResponse("Teste de SQLi")
@@ -31,10 +31,10 @@ def django_xss_test(request):
     # FONTE (Source)
     user_bio = request.GET.get('bio', '')
 
-    # CASO A: SEGURO (Django Auto-escape) - Snyk ignora
+    # CASO A: SEGURO (Django Auto-escape) 
     response_safe = HttpResponse(f"<h1>Bio: {user_bio}</h1>")
 
-    # CASO B: VULNERÁVEL (CWE-79) - Snyk detecta o mark_safe() com dados do request
+    # CASO B: VULNERÁVEL (CWE-79)
     response_vulnerable = HttpResponse(mark_safe(f"<h1>Bio: {user_bio}</h1>"))
     
     return response_vulnerable
