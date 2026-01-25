@@ -57,3 +57,4 @@ if __name__ == "__main__":
     load_user_config(user_input)
     read_private_file(user_input)
     execution_helper(user_input)
+    validate_email(user_input)
