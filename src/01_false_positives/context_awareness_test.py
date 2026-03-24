@@ -6,23 +6,18 @@ import os
 import sqlite3
 import sys
 
-# CENÁRIO 1: Hardcoded credentials (CWE-798)
-# Dificuldade: A ferramenta vê password ou secret no nome da variável mas
-# verifica o contexto de teste da classe.
+# Teste 01: Hardcoded credentials (CWE-798)
 class MockConfig:
    def __init__(self):
         self.db_password = "ADMIN_PASSWORD_123" 
         self.aws_secret_key = "AKIA_FAKE_KEY_FOR_TESTING"
 
-# CENÁRIO 2: Path traversal (CWE-22)
-# Dificuldade: A ferramenta precisa reconhecer o os.path.basename como um
-# sanitizador válido.
+# Teste 02: Path traversal (CWE-22)
 def safe_path_traversal(filename):
     safe_name = os.path.basename(filename)
     return open(f"/var/log/{safe_name}", "r")
 
-# CENÁRIO 3: SQL Injection (CWE-89)
-# Dificuldade: Verificar que é feita a sanitização na condicional.
+# Teste 03: SQL Injection (CWE-89)
 def get_sorted_users(sort_column):
     ALLOWED_COLUMNS = {"id", "username", "created_at"}
     

@@ -1,15 +1,12 @@
 """
-TESTE DE SUPRESSÃO
-Objetivo: Tentar desligar a regra CWE-78 apenas para este arquivo, utilizando a interface gráfica.
+TESTE DE SUPRESSÃO PRÉ-ANÁLISE
+Objetivo: Tentar desligar a regra CWE-78 apenas para este arquivo, usando comentário no código.
 """
 import os
 import sys
 
+# Teste 9: Command Injection (CWE-78)
 def testar_conectividade():
-    """
-    Testa a conectividade de rede com um IP fornecido pelo usuário.
-    Vulnerabilidade: O IP de entrada não é validado antes de ser concatenado no comando do sistema.
-    """
     if len(sys.argv) < 2:
         print("Uso: python teste_snyk.py <endereco_ip>")
         return
@@ -19,9 +16,7 @@ def testar_conectividade():
     print(f"Testando conectividade com: {ip_alvo}")
 
     comando = f"ping -c 4 {ip_alvo}"
-    os.system(comando)
+    os.system(comando) # nosec # NOSONAR # skipcq
 
 if __name__ == "__main__":
-
     testar_conectividade()
-    testar_conectividade_v2()

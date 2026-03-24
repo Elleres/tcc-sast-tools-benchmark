@@ -7,6 +7,7 @@ import os
 from taint_source import get_dangerous_input
 from taint_processor import format_data
 
+# Teste 08: Command Injection (CWE-78)
 def execute_vulnerability():
     dirty_input = get_dangerous_input()
 
