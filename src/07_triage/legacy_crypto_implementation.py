@@ -1,8 +1,8 @@
 """
 TESTE DE SUPRESSÃO PÓS ANÁLISE
 Objetivo: Marcar no dashboard da ferramenta essa vulnerabilidade abaixo como
-"won't fix" ou algum marcador semelhante e verificar se ele será ignorado nos próximos
-commits.
+"won't fix" ou algum marcador semelhante. Deve ser possível ignorar somente 
+um issue e não o arquivo inteiro.
 """
 import hashlib
 

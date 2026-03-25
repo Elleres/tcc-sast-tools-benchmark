@@ -21,7 +21,6 @@ def django_raw_query_test(request):
     
     return HttpResponse("Teste de SQLi")
 
-# CENÁRIO 2: format_html e 'mark_safe'
 @require_GET
 def django_xss_test(request):
     user_bio = request.GET.get('bio', '')
