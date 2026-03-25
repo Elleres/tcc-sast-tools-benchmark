@@ -10,3 +10,4 @@ def legacy_hashing(password):
     # Teste 17: Use of Password Hash With Insufficient Computational Effort (CWE-916)
     return hashlib.md5(password.encode()).hexdigest()
 
+# Teste para PR!
